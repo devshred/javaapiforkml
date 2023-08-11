@@ -1,5 +1,7 @@
 # Java API for KML
 
+This fork updates the library to Java 17.
+
 > The objective of the Java API for KML is to provide Java interfaces for easy access to KML (Keyhole Markup Language) data.
 
 # Now under Maintenance

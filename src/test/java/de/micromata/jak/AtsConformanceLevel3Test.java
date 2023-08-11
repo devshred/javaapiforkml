@@ -17,9 +17,9 @@ package de.micromata.jak;
 
 import java.lang.reflect.Field;
 
-import junit.framework.Assert;
+import org.junit.jupiter.api.Assertions;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.micromata.jak.internal.IAtsConformanceLevel3;
 import de.micromata.opengis.kml.v_2_2_0.BalloonStyle;
@@ -66,10 +66,10 @@ public class AtsConformanceLevel3Test implements IAtsConformanceLevel3 {
 	@Test
 	public void atc71BaloonStyleColor() {
 		Field color = Utils.findField(BalloonStyle.class, "color");
-		Assert.assertNotNull(color);
+		Assertions.assertNotNull(color);
 		
   	final Deprecated annotation = color.getAnnotation(Deprecated.class);
-  	Assert.assertEquals(Deprecated.class, annotation.annotationType());
+  	Assertions.assertEquals(Deprecated.class, annotation.annotationType());
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class AtsConformanceLevel3Test implements IAtsConformanceLevel3 {
   @Test
 	public void atc72Metadata() {
   	final Deprecated annotation = Metadata.class.getAnnotation(Deprecated.class);
-  	Assert.assertEquals(Deprecated.class, annotation.annotationType());
+  	Assertions.assertEquals(Deprecated.class, annotation.annotationType());
 	}
 
 	/**
@@ -86,9 +86,9 @@ public class AtsConformanceLevel3Test implements IAtsConformanceLevel3 {
 	 */
 	@Test
 	public void atc73ScaleFullContent() {
-		Assert.assertNotNull(Utils.findField(Scale.class, "x"));
-		Assert.assertNotNull(Utils.findField(Scale.class, "y"));
-		Assert.assertNotNull(Utils.findField(Scale.class, "z"));
+		Assertions.assertNotNull(Utils.findField(Scale.class, "x"));
+		Assertions.assertNotNull(Utils.findField(Scale.class, "y"));
+		Assertions.assertNotNull(Utils.findField(Scale.class, "z"));
 	}
 
 	/**
@@ -105,9 +105,9 @@ public class AtsConformanceLevel3Test implements IAtsConformanceLevel3 {
 	 */
 	@Test
 	public void atc75OrientationFullContent() {
-		Assert.assertNotNull(Utils.findField(Orientation.class, "heading"));
-		Assert.assertNotNull(Utils.findField(Orientation.class, "tilt"));
-		Assert.assertNotNull(Utils.findField(Orientation.class, "roll"));
+		Assertions.assertNotNull(Utils.findField(Orientation.class, "heading"));
+		Assertions.assertNotNull(Utils.findField(Orientation.class, "tilt"));
+		Assertions.assertNotNull(Utils.findField(Orientation.class, "roll"));
 	} 
 	
 	/**
@@ -116,7 +116,7 @@ public class AtsConformanceLevel3Test implements IAtsConformanceLevel3 {
   @Test
 	public void atc76Snippet() {
 	 	Deprecated annotation = Snippet.class.getAnnotation(Deprecated.class);
-  	Assert.assertEquals(Deprecated.class, annotation.annotationType());
+  	Assertions.assertEquals(Deprecated.class, annotation.annotationType());
 	}
 
 	/**
@@ -125,10 +125,10 @@ public class AtsConformanceLevel3Test implements IAtsConformanceLevel3 {
   @Test
 	public void atc77NetworkLinkUrl() {
 		Field url = Utils.findField(NetworkLink.class, "url");
-		Assert.assertNotNull(url);
+		Assertions.assertNotNull(url);
 		
 	 	Deprecated annotation = url.getAnnotation(Deprecated.class);
-  	Assert.assertEquals(Deprecated.class, annotation.annotationType());
+  	Assertions.assertEquals(Deprecated.class, annotation.annotationType());
 	}
 
 }

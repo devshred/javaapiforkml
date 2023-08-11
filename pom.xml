@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.micromata.jak</groupId>
 	<artifactId>JavaAPIforKml</artifactId>
-	<version>2.3.0-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 	<name>a Java API for Kml</name>
 	<description>This is JavaAPIforKMml, Micromata's library for use with applications that want to parse, generate and operate on KML. It is an implementation of the OGC KML 2.2 standard. It is written entirely in Java and makes heavy use of JAXB.</description>
 	<packaging>jar</packaging>
@@ -15,7 +15,7 @@
   	<parent>
     	<groupId>org.sonatype.oss</groupId>
     	<artifactId>oss-parent</artifactId>
-    	<version>7</version>
+    	<version>9</version>
   	</parent>
 	<scm>
 		<url>https://github.com/micromata/javaapiforkml</url>
@@ -93,8 +93,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>17</source>
+					<target>17</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
@@ -130,12 +130,16 @@
 		</extensions>
 	</build>
 	<properties>
-		<jaxb.version>4.0.1</jaxb.version>
-		<log4j.version>1.2.17</log4j.version>
-		<junit.version>4.13.1</junit.version>
-		<xmlunit.version>1.6</xmlunit.version>
+		<jaxb.version>4.0.3</jaxb.version>
+		<junit.version>5.10.0</junit.version>
+		<xmlunit.version>2.9.1</xmlunit.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
@@ -147,22 +151,21 @@
 			<version>${jaxb.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-			<scope>test</scope>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>2.15.2</version>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>xmlunit</groupId>
-			<artifactId>xmlunit</artifactId>
+			<groupId>org.xmlunit</groupId>
+			<artifactId>xmlunit-core</artifactId>
 			<version>${xmlunit.version}</version>
-      <scope>test</scope>
+			<scope>test</scope>
 		</dependency>
 		<!--
 			code generation part disabled, till all files are in public maven repositories <dependency>
@@ -209,7 +212,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.2.1</version>
+				<version>3.5.0</version>
 				<configuration>
 				</configuration>
 				<reportSets>

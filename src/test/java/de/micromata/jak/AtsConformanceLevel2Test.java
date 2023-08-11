@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.logging.Logger;
 
-import junit.framework.Assert;
+import org.junit.jupiter.api.Assertions;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.micromata.jak.internal.IAtsConformanceLevel2;
 import de.micromata.opengis.kml.v_2_2_0.Alias;
@@ -59,12 +59,12 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	@Test
 	public void atc42PolyStyle() {
 		// a kml:Scale element is not a descendant of kml:Update
-		Assert.assertNull(Utils.findClass(PolyStyle.class, "update"));
+		Assertions.assertNull(Utils.findClass(PolyStyle.class, "update"));
 		
-		Assert.assertNotNull(Utils.findField(PolyStyle.class, "color"));
-		Assert.assertNotNull(Utils.findField(PolyStyle.class, "colorMode"));
-		Assert.assertNotNull(Utils.findField(PolyStyle.class, "fill"));
-		Assert.assertNotNull(Utils.findField(PolyStyle.class, "outline"));
+		Assertions.assertNotNull(Utils.findField(PolyStyle.class, "color"));
+		Assertions.assertNotNull(Utils.findField(PolyStyle.class, "colorMode"));
+		Assertions.assertNotNull(Utils.findField(PolyStyle.class, "fill"));
+		Assertions.assertNotNull(Utils.findField(PolyStyle.class, "outline"));
 	}
 
 	/**
@@ -76,38 +76,38 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 		// in kml:AbstractGeometryType/kml:coordinates 
 		// and kml:Model/kml:Location.
 		Field location = Utils.findField(Model.class, "location");
-		Assert.assertNotNull(location);
-		Assert.assertEquals(Location.class, location.getType());
+		Assertions.assertNotNull(location);
+		Assertions.assertEquals(Location.class, location.getType());
 		
 		// check if LinearRing contains coordinats
 		Field coordinatesLinerarRing = Utils.findField(LinearRing.class, "coordinates");
-		Assert.assertNotNull(coordinatesLinerarRing);
-		Assert.assertEquals(Coordinate.class, Utils.getClassForGenericList(coordinatesLinerarRing.getGenericType().toString()));
+		Assertions.assertNotNull(coordinatesLinerarRing);
+		Assertions.assertEquals(Coordinate.class, Utils.getClassForGenericList(coordinatesLinerarRing.getGenericType().toString()));
 		
 		// check if Point contains coordinats
 		Field coordinatesPoint = Utils.findField(Point.class, "coordinates");
-		Assert.assertNotNull(coordinatesPoint);
-		Assert.assertEquals(Coordinate.class, Utils.getClassForGenericList(coordinatesPoint.getGenericType().toString()));
+		Assertions.assertNotNull(coordinatesPoint);
+		Assertions.assertEquals(Coordinate.class, Utils.getClassForGenericList(coordinatesPoint.getGenericType().toString()));
 		
 		// check if Model contains coordinats
 		Field locationModel = Utils.findField(Model.class, "location");
-		Assert.assertNotNull(locationModel);
-		Assert.assertEquals(Location.class, locationModel.getType());
+		Assertions.assertNotNull(locationModel);
+		Assertions.assertEquals(Location.class, locationModel.getType());
 		
 		// check if LineString contains coordinats
 		Field coordinatesLineString = Utils.findField(LineString.class, "coordinates");
-		Assert.assertNotNull(coordinatesLineString);
-		Assert.assertEquals(Coordinate.class, Utils.getClassForGenericList(coordinatesLineString.getGenericType().toString()));
+		Assertions.assertNotNull(coordinatesLineString);
+		Assertions.assertEquals(Coordinate.class, Utils.getClassForGenericList(coordinatesLineString.getGenericType().toString()));
 		
 		// check if Location contains altitude as double type
 		Field locationAltitude = Utils.findField(Location.class, "altitude");
-		Assert.assertNotNull(locationAltitude);
-		Assert.assertEquals("double", locationAltitude.getType().getSimpleName());
+		Assertions.assertNotNull(locationAltitude);
+		Assertions.assertEquals("double", locationAltitude.getType().getSimpleName());
 
 		// check if Location contains altitude as double type
 		Field coordinateAltitude = Utils.findField(Coordinate.class, "altitude");
-		Assert.assertNotNull(coordinateAltitude);
-		Assert.assertEquals("double", coordinateAltitude.getType().getSimpleName());
+		Assertions.assertNotNull(coordinateAltitude);
+		Assertions.assertEquals("double", coordinateAltitude.getType().getSimpleName());
 	}
 
 	/**
@@ -116,11 +116,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	@Test
 	public void atc44ScaleMinimalContent() {
 		// a kml:Scale element is not a descendant of kml:Update
-		Assert.assertNull(Utils.findClass(Scale.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Scale.class, "Update"));
 		
-		Assert.assertNotNull(Utils.findField(Scale.class, "x"));
-		Assert.assertNotNull(Utils.findField(Scale.class, "y"));
-		Assert.assertNotNull(Utils.findField(Scale.class, "z"));
+		Assertions.assertNotNull(Utils.findField(Scale.class, "x"));
+		Assertions.assertNotNull(Utils.findField(Scale.class, "y"));
+		Assertions.assertNotNull(Utils.findField(Scale.class, "z"));
 	}
 
 	/**
@@ -128,8 +128,8 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc45KMLMinimalContent() {
-		Assert.assertNotNull(Utils.findField(Kml.class, "networkLinkControl"));
-		Assert.assertNotNull(Utils.findField(Kml.class, "feature"));
+		Assertions.assertNotNull(Utils.findField(Kml.class, "networkLinkControl"));
+		Assertions.assertNotNull(Utils.findField(Kml.class, "feature"));
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc46ViewFormat() {
-		Assert.assertNotNull(Utils.findField(Link.class, "viewFormat"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "viewFormat"));
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc47HttpQuery() {
-		Assert.assertNotNull(Utils.findField(Link.class, "httpQuery"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "httpQuery"));
 	}
 
 	/**
@@ -154,9 +154,9 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	@Test
 	public void atc48LinearRingInPolygon() {
 		//TODO: take a second look
-		Assert.assertNotNull(Utils.findField(LinearRing.class, "extrude"));
-		Assert.assertNotNull(Utils.findField(LinearRing.class, "tessellate"));
-		Assert.assertNotNull(Utils.findField(LinearRing.class, "altitudeMode"));
+		Assertions.assertNotNull(Utils.findField(LinearRing.class, "extrude"));
+		Assertions.assertNotNull(Utils.findField(LinearRing.class, "tessellate"));
+		Assertions.assertNotNull(Utils.findField(LinearRing.class, "altitudeMode"));
 	}
 
 	/**
@@ -164,8 +164,8 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc49Data() {
-		Assert.assertNotNull(Utils.findField(Data.class, "displayName"));
-		Assert.assertNotNull(Utils.findField(Data.class, "value"));
+		Assertions.assertNotNull(Utils.findField(Data.class, "displayName"));
+		Assertions.assertNotNull(Utils.findField(Data.class, "value"));
 	}
 
 	/**
@@ -173,8 +173,8 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc50ResourceMapAlias() {
-		Assert.assertNotNull(Utils.findField(ResourceMap.class, "alias"));
-		Assert.assertNotNull(Utils.findField(Alias.class, "sourceHref"));
+		Assertions.assertNotNull(Utils.findField(ResourceMap.class, "alias"));
+		Assertions.assertNotNull(Utils.findField(Alias.class, "sourceHref"));
 	}
 
 	/**
@@ -183,11 +183,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	@Test
 	public void atc51LinkRefreshValues() {
 		//TODO: take a second look
-		Assert.assertNotNull(Utils.findField(Link.class, "refreshInterval"));
-		Assert.assertNotNull(Utils.findField(Link.class, "viewRefreshTime"));
-		Assert.assertNotNull(Utils.findField(ViewRefreshMode.class, "ON_STOP"));
-		Assert.assertNotNull(Utils.findField(Icon.class, "refreshInterval"));
-		Assert.assertNotNull(Utils.findField(Icon.class, "viewRefreshTime"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "refreshInterval"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "viewRefreshTime"));
+		Assertions.assertNotNull(Utils.findField(ViewRefreshMode.class, "ON_STOP"));
+		Assertions.assertNotNull(Utils.findField(Icon.class, "refreshInterval"));
+		Assertions.assertNotNull(Utils.findField(Icon.class, "viewRefreshTime"));
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	@Test
 	public void atc52PhotoOverlay() {
 		//TODO: take a second look
-		Assert.assertNotNull(Utils.findField(PhotoOverlay.class, "icon"));
+		Assertions.assertNotNull(Utils.findField(PhotoOverlay.class, "icon"));
 		// The parameters are embedded within the URL; 
 		// i.e, http://server.company.com/bigphoto/$[level]/row_$[x]_column_$[y].jpg. 
 		// Check for the kml:ImagePyramid when the x, y, level parameters are present, 
@@ -204,7 +204,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 		
 		Icon icon = new Icon();
 		icon.setHref("http://server.company.com/bigphoto/$[level]/row_$[x]_column_$[y].jpg");
-		Assert.assertEquals(icon.getHref(), "http://server.company.com/bigphoto/$[level]/row_$[x]_column_$[y].jpg");
+		Assertions.assertEquals(icon.getHref(), "http://server.company.com/bigphoto/$[level]/row_$[x]_column_$[y].jpg");
 	}
 
 	/**
@@ -213,11 +213,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	@Test
 	public void atc53GroundOverlayMinimalContent() {
 		// a kml:GroundOverlay element is not a descendant of kml:Update
-		Assert.assertNull(Utils.findClass(GroundOverlay.class, "Update"));
+		Assertions.assertNull(Utils.findClass(GroundOverlay.class, "Update"));
 		
 		Field latlonBoxGroundOverlay = Utils.findField(GroundOverlay.class, "latLonBox");
-		Assert.assertNotNull(latlonBoxGroundOverlay);
-		Assert.assertEquals(LatLonBox.class, latlonBoxGroundOverlay.getType());
+		Assertions.assertNotNull(latlonBoxGroundOverlay);
+		Assertions.assertEquals(LatLonBox.class, latlonBoxGroundOverlay.getType());
 	}
 
 	/**
@@ -228,10 +228,10 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 		//TODO: take a second look
 		//TODO: if set to altitude is present the altitudeMode is not clmapToGround"
 		
-		Assert.assertNull(Utils.findClass(Camera.class, "Update"));
-		Assert.assertNotNull(Utils.findField(Camera.class, "longitude"));
-		Assert.assertNotNull(Utils.findField(Camera.class, "latitude"));
-		Assert.assertNotNull(Utils.findField(Camera.class, "altitude"));
+		Assertions.assertNull(Utils.findClass(Camera.class, "Update"));
+		Assertions.assertNotNull(Utils.findField(Camera.class, "longitude"));
+		Assertions.assertNotNull(Utils.findField(Camera.class, "latitude"));
+		Assertions.assertNotNull(Utils.findField(Camera.class, "altitude"));
 	}
 
 	/**
@@ -239,9 +239,9 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc55Location() {
-		Assert.assertNotNull(Utils.findField(Location.class, "longitude"));
-		Assert.assertNotNull(Utils.findField(Location.class, "latitude"));
-		Assert.assertNotNull(Utils.findField(Location.class, "altitude"));
+		Assertions.assertNotNull(Utils.findField(Location.class, "longitude"));
+		Assertions.assertNotNull(Utils.findField(Location.class, "latitude"));
+		Assertions.assertNotNull(Utils.findField(Location.class, "altitude"));
 	}
 
 	/**
@@ -249,10 +249,10 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc56Overlay() {
-		Assert.assertNull(Utils.findClass(Overlay.class, "Update"));
-		Assert.assertNull(Utils.findClass(ScreenOverlay.class, "Update"));
-		Assert.assertNull(Utils.findClass(PhotoOverlay.class, "Update"));
-		Assert.assertNull(Utils.findClass(GroundOverlay.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Overlay.class, "Update"));
+		Assertions.assertNull(Utils.findClass(ScreenOverlay.class, "Update"));
+		Assertions.assertNull(Utils.findClass(PhotoOverlay.class, "Update"));
+		Assertions.assertNull(Utils.findClass(GroundOverlay.class, "Update"));
 	}
 
 	/**
@@ -260,8 +260,8 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc57ScreenOverlay() {
-		Assert.assertNull(Utils.findClass(ScreenOverlay.class, "Update"));
-		Assert.assertNotNull(Utils.findField(ScreenOverlay.class, "screenXY"));
+		Assertions.assertNull(Utils.findClass(ScreenOverlay.class, "Update"));
+		Assertions.assertNotNull(Utils.findField(ScreenOverlay.class, "screenXY"));
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc58BaloonStyle() {
-		Assert.assertNull(Utils.findClass(BalloonStyle.class, "Update"));
+		Assertions.assertNull(Utils.findClass(BalloonStyle.class, "Update"));
 	}
 
 	/**
@@ -277,8 +277,8 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc59ExtendedData() {
-		Assert.assertNotNull(Utils.findField(ExtendedData.class, "data"));
-		Assert.assertNotNull(Utils.findField(ExtendedData.class, "schemaData"));
+		Assertions.assertNotNull(Utils.findField(ExtendedData.class, "data"));
+		Assertions.assertNotNull(Utils.findField(ExtendedData.class, "schemaData"));
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc60Folder() {
-		Assert.assertNull(Utils.findClass(Folder.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Folder.class, "Update"));
 	}
 
 	/**
@@ -294,7 +294,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc61IconStyle() {
-		Assert.assertNull(Utils.findClass(IconStyle.class, "Update"));
+		Assertions.assertNull(Utils.findClass(IconStyle.class, "Update"));
 	}
 
 	/**
@@ -302,11 +302,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc62ImagePyramid() {
-		Assert.assertNull(Utils.findClass(ImagePyramid.class, "Update"));
+		Assertions.assertNull(Utils.findClass(ImagePyramid.class, "Update"));
 		
-		Assert.assertNotNull(Utils.findField(ImagePyramid.class, "tileSize"));
-		Assert.assertNotNull(Utils.findField(ImagePyramid.class, "maxWidth"));
-		Assert.assertNotNull(Utils.findField(ImagePyramid.class, "maxHeight"));
+		Assertions.assertNotNull(Utils.findField(ImagePyramid.class, "tileSize"));
+		Assertions.assertNotNull(Utils.findField(ImagePyramid.class, "maxWidth"));
+		Assertions.assertNotNull(Utils.findField(ImagePyramid.class, "maxHeight"));
 	}
 
 	/**
@@ -314,11 +314,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc63LabelStyle() {
-		Assert.assertNull(Utils.findClass(LabelStyle.class, "Update"));
+		Assertions.assertNull(Utils.findClass(LabelStyle.class, "Update"));
 		
-		Assert.assertNotNull(Utils.findField(LabelStyle.class, "color"));
-		Assert.assertNotNull(Utils.findField(LabelStyle.class, "colorMode"));
-		Assert.assertNotNull(Utils.findField(LabelStyle.class, "scale"));
+		Assertions.assertNotNull(Utils.findField(LabelStyle.class, "color"));
+		Assertions.assertNotNull(Utils.findField(LabelStyle.class, "colorMode"));
+		Assertions.assertNotNull(Utils.findField(LabelStyle.class, "scale"));
 	}
 
 	/**
@@ -326,11 +326,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc64ListStyle() {
-		Assert.assertNull(Utils.findClass(ListStyle.class, "Update"));
+		Assertions.assertNull(Utils.findClass(ListStyle.class, "Update"));
 
-		Assert.assertNotNull(Utils.findField(ListStyle.class, "listItemType"));
-		Assert.assertNotNull(Utils.findField(ListStyle.class, "bgColor"));
-		Assert.assertNotNull(Utils.findField(ListStyle.class, "itemIcon"));
+		Assertions.assertNotNull(Utils.findField(ListStyle.class, "listItemType"));
+		Assertions.assertNotNull(Utils.findField(ListStyle.class, "bgColor"));
+		Assertions.assertNotNull(Utils.findField(ListStyle.class, "itemIcon"));
 	}
 
 	/**
@@ -338,7 +338,7 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc65Sytle() {
-		Assert.assertNull(Utils.findClass(Style.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Style.class, "Update"));
 	}
 
 	/**
@@ -346,11 +346,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc66MultiGeometry() {
-		Assert.assertNull(Utils.findClass(MultiGeometry.class, "Update"));
+		Assertions.assertNull(Utils.findClass(MultiGeometry.class, "Update"));
 		
 		Field geometryList = Utils.findField(MultiGeometry.class, "geometry");
-		Assert.assertNotNull(geometryList);
-		Assert.assertEquals(List.class, geometryList.getType());
+		Assertions.assertNotNull(geometryList);
+		Assertions.assertEquals(List.class, geometryList.getType());
 	}
 
 	/**
@@ -358,11 +358,11 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc67Placemark() {
-		Assert.assertNull(Utils.findClass(Placemark.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Placemark.class, "Update"));
 		
 		Field geometry = Utils.findField(Placemark.class, "geometry");
-		Assert.assertNotNull(geometry);
-		Assert.assertEquals(Geometry.class, geometry.getType());
+		Assertions.assertNotNull(geometry);
+		Assertions.assertEquals(Geometry.class, geometry.getType());
 		
 	}
 
@@ -371,16 +371,16 @@ public class AtsConformanceLevel2Test implements IAtsConformanceLevel2 {
 	 */
 	@Test
 	public void atc68StyleMap() {
-		Assert.assertNull(Utils.findClass(StyleMap.class, "Update"));
+		Assertions.assertNull(Utils.findClass(StyleMap.class, "Update"));
 		
 		// check if StyleMap contains pair
 		Field pair = Utils.findField(StyleMap.class, "pair");
-		Assert.assertNotNull(pair);
-		Assert.assertEquals(List.class, pair.getType());
-		Assert.assertEquals(Pair.class, Utils.getClassForGenericList(pair.getGenericType().toString()));
+		Assertions.assertNotNull(pair);
+		Assertions.assertEquals(List.class, pair.getType());
+		Assertions.assertEquals(Pair.class, Utils.getClassForGenericList(pair.getGenericType().toString()));
 		
-		Assert.assertNotNull(Utils.findField(StyleState.class, "NORMAL"));
-		Assert.assertNotNull(Utils.findField(StyleState.class, "HIGHLIGHT"));
+		Assertions.assertNotNull(Utils.findField(StyleState.class, "NORMAL"));
+		Assertions.assertNotNull(Utils.findField(StyleState.class, "HIGHLIGHT"));
 	}
 
 }

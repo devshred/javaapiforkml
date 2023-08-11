@@ -3,9 +3,9 @@ package de.micromata.jak.examples;
 import java.io.File;
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.jupiter.api.Assertions;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.micromata.opengis.kml.v_2_2_0.Boundary;
 import de.micromata.opengis.kml.v_2_2_0.Coordinate;
@@ -27,12 +27,12 @@ public class CloneTest {
     Placemark pm = (Placemark) folder.getFeature().get(17);
 
     Placemark placemark = pm.clone();//Utils.clonePlacemark(pm);
-    Assert.assertEquals(placemark,pm); // country with multipolygon, outer and inner linear ring objects
+    Assertions.assertEquals(placemark,pm); // country with multipolygon, outer and inner linear ring objects
     
-    Assert.assertEquals(pm.getId(), "BGD"); // country with multipolygon, outer and inner linear ring objects
-    Assert.assertNotSame(pm, placemark);
-    Assert.assertEquals(pm.getId(), placemark.getId());
-    Assert.assertEquals(pm.getName(), placemark.getName());
+    Assertions.assertEquals(pm.getId(), "BGD"); // country with multipolygon, outer and inner linear ring objects
+    Assertions.assertNotSame(pm, placemark);
+    Assertions.assertEquals(pm.getId(), placemark.getId());
+    Assertions.assertEquals(pm.getName(), placemark.getName());
 
     MultiGeometry multiGeometry = new MultiGeometry();
     MultiGeometry mg = ((MultiGeometry) pm.getGeometry());
@@ -41,8 +41,8 @@ public class CloneTest {
       Polygon p = (Polygon) mg.getGeometry().get(i);
       Polygon polygon = new Polygon();
       polygon.withAltitudeMode(p.getAltitudeMode()).withExtrude(p.isExtrude());
-      Assert.assertEquals(p.getAltitudeMode(), polygon.getAltitudeMode());
-      Assert.assertEquals(p.isExtrude(), polygon.isExtrude());
+      Assertions.assertEquals(p.getAltitudeMode(), polygon.getAltitudeMode());
+      Assertions.assertEquals(p.isExtrude(), polygon.isExtrude());
 
       Boundary outerBoundaryIs = new Boundary();
       List<Coordinate> coordinates = outerBoundaryIs.createAndSetLinearRing().createAndSetCoordinates();
@@ -54,15 +54,15 @@ public class CloneTest {
         double longitude = c.getLongitude();
         double latitude = c.getLatitude();
         double altitude = c.getAltitude();
-        Assert.assertEquals(c.getLongitude(), coordinates.get(j).getLongitude());
-        Assert.assertEquals(c.getLatitude(), coordinates.get(j).getLatitude());
-        Assert.assertEquals(c.getAltitude(), coordinates.get(j).getAltitude());
+        Assertions.assertEquals(c.getLongitude(), coordinates.get(j).getLongitude());
+        Assertions.assertEquals(c.getLatitude(), coordinates.get(j).getLatitude());
+        Assertions.assertEquals(c.getAltitude(), coordinates.get(j).getAltitude());
         c.setLongitude(0);
         c.setLatitude(0);
         c.setAltitude(0);
-        Assert.assertEquals(longitude, coordinates.get(j).getLongitude());
-        Assert.assertEquals(latitude, coordinates.get(j).getLatitude());
-        Assert.assertEquals(altitude, coordinates.get(j).getAltitude());
+        Assertions.assertEquals(longitude, coordinates.get(j).getLongitude());
+        Assertions.assertEquals(latitude, coordinates.get(j).getLatitude());
+        Assertions.assertEquals(altitude, coordinates.get(j).getAltitude());
 
       }
       if (!p.getInnerBoundaryIs().isEmpty()) {
@@ -75,15 +75,15 @@ public class CloneTest {
             double longitude = c.getLongitude();
             double latitude = c.getLatitude();
             double altitude = c.getAltitude();
-            Assert.assertEquals(c.getLongitude(), coordinatesInner.get(k).getLongitude());
-            Assert.assertEquals(c.getLatitude(), coordinatesInner.get(k).getLatitude());
-            Assert.assertEquals(c.getAltitude(), coordinatesInner.get(k).getAltitude());
+            Assertions.assertEquals(c.getLongitude(), coordinatesInner.get(k).getLongitude());
+            Assertions.assertEquals(c.getLatitude(), coordinatesInner.get(k).getLatitude());
+            Assertions.assertEquals(c.getAltitude(), coordinatesInner.get(k).getAltitude());
             c.setLongitude(0);
             c.setLatitude(0);
             c.setAltitude(0);
-            Assert.assertEquals(longitude, coordinatesInner.get(k).getLongitude());
-            Assert.assertEquals(latitude, coordinatesInner.get(k).getLatitude());
-            Assert.assertEquals(altitude, coordinatesInner.get(k).getAltitude());
+            Assertions.assertEquals(longitude, coordinatesInner.get(k).getLongitude());
+            Assertions.assertEquals(latitude, coordinatesInner.get(k).getLatitude());
+            Assertions.assertEquals(altitude, coordinatesInner.get(k).getAltitude());
           }
           polygon.addToInnerBoundaryIs(innerBoundary);
         }

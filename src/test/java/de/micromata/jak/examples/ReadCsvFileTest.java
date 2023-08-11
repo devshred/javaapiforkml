@@ -6,16 +6,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests fot the reading CSV files
  */
 public class ReadCsvFileTest {
 
-  @Ignore
+  @Disabled
   public void printAlphabeticalOrder() throws IOException {
 
     HashMap<String, Double> data = Utils.readCSVDoubleData("src/main/resources/exampledata/mobile_phone_2008.csv", 0, 3);
@@ -33,7 +33,7 @@ public class ReadCsvFileTest {
     data.remove("maximum");
     data.remove("minimum");
 
-    Assert.assertEquals(153, data.size()); // check size
+    Assertions.assertEquals(153, data.size()); // check size
 
     ArrayList<String> keys = new ArrayList<String>();
     keys.addAll(data.keySet());
@@ -46,10 +46,10 @@ public class ReadCsvFileTest {
       // check first and last element
       switch (counter) {
       case 0:
-        Assert.assertEquals("ABW", code);
+        Assertions.assertEquals("ABW", code);
         break;
       case 153:
-        Assert.assertEquals("ZWE", code);
+        Assertions.assertEquals("ZWE", code);
         break;
       }
       counter++;
@@ -62,10 +62,10 @@ public class ReadCsvFileTest {
     HashMap<String, HashMap<String, Double>> result = Utils.readMultiDataFromCVS(
         "src/main/resources/exampledata/mobile_phone.csv", 0, 3, 2);
     result.remove("info");
-    Assert.assertEquals(217, result.size()); // check size
+    Assertions.assertEquals(217, result.size()); // check size
 
     HashMap<String, Double> afg = result.get("AFG");
-    Assert.assertNotNull(afg);
+    Assertions.assertNotNull(afg);
     ArrayList<String> afg_keys = new ArrayList<String>();
     afg_keys.addAll(afg.keySet());
     Collections.sort(afg_keys);
@@ -76,28 +76,28 @@ public class ReadCsvFileTest {
       int year_int = Integer.parseInt(year);
       switch (year_int) {
       case 2002:
-        Assert.assertEquals(25000.0, afg.get(year), 0.1);
+        Assertions.assertEquals(25000.0, afg.get(year), 0.1);
         break;
       case 2003:
-        Assert.assertEquals(200000.0, afg.get(year), 0.1);
+        Assertions.assertEquals(200000.0, afg.get(year), 0.1);
         break;
       case 2004:
-        Assert.assertEquals(600000.0, afg.get(year), 0.1);
+        Assertions.assertEquals(600000.0, afg.get(year), 0.1);
         break;
       case 2005:
-        Assert.assertEquals(1200000.0, afg.get(year), 0.1);
+        Assertions.assertEquals(1200000.0, afg.get(year), 0.1);
         break;
       case 2006:
-        Assert.assertEquals(2520366.0, afg.get(year), 0.1);
+        Assertions.assertEquals(2520366.0, afg.get(year), 0.1);
         break;
       case 2007:
-        Assert.assertEquals(4668096.0, afg.get(year), 0.1);
+        Assertions.assertEquals(4668096.0, afg.get(year), 0.1);
         break;
       case 2008:
-        Assert.assertEquals(7898909.0, afg.get(year), 0.1);
+        Assertions.assertEquals(7898909.0, afg.get(year), 0.1);
         break;
       default:
-        Assert.assertEquals(0.0, afg.get(year), 0.1); // 1960 - 2001
+        Assertions.assertEquals(0.0, afg.get(year), 0.1); // 1960 - 2001
       }
     }
 

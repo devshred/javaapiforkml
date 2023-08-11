@@ -20,10 +20,10 @@ import java.util.List;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
 
-import junit.framework.Assert;
+import org.junit.jupiter.api.Assertions;
 
-import org.apache.log4j.Logger;
-import org.junit.Test;
+import java.util.logging.Logger;
+import org.junit.jupiter.api.Test;
 
 import de.micromata.jak.internal.IAtsConformanceLevel1;
 import de.micromata.opengis.kml.v_2_2_0.AbstractLatLonBox;
@@ -85,8 +85,8 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	public void atc01RootElement() {
 		final XmlRootElement annotation = Kml.class.getAnnotation(XmlRootElement.class);
 
-		Assert.assertEquals("kml", annotation.name());
-		Assert.assertEquals("http://www.opengis.net/kml/2.2", annotation.namespace());
+		Assertions.assertEquals("kml", annotation.name());
+		Assertions.assertEquals("http://www.opengis.net/kml/2.2", annotation.namespace());
 	}
 
 	/**
@@ -111,8 +111,8 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc04TimeSpan() {
-		Assert.assertNotNull(Utils.findField(TimeSpan.class, "begin"));
-		Assert.assertNotNull(Utils.findField(TimeSpan.class, "end"));
+		Assertions.assertNotNull(Utils.findField(TimeSpan.class, "begin"));
+		Assertions.assertNotNull(Utils.findField(TimeSpan.class, "end"));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc05TimeStamp() {
-		Assert.assertNotNull(Utils.findField(TimeStamp.class, "when"));
+		Assertions.assertNotNull(Utils.findField(TimeStamp.class, "when"));
 	}
 
 	/**
@@ -135,11 +135,11 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc07SharedStyleDefintion() {
-		Assert.assertNull(Utils.findClass(Document.class, "styleSelector"));
+		Assertions.assertNull(Utils.findClass(Document.class, "styleSelector"));
 
-		Assert.assertNotNull(Utils.findField(StyleSelector.class, "id"));
-		Assert.assertNotNull(Utils.findField(Style.class, "id"));
-		Assert.assertNotNull(Utils.findField(StyleMap.class, "id"));
+		Assertions.assertNotNull(Utils.findField(StyleSelector.class, "id"));
+		Assertions.assertNotNull(Utils.findField(Style.class, "id"));
+		Assertions.assertNotNull(Utils.findField(StyleMap.class, "id"));
 	}
 
 	/**
@@ -164,9 +164,9 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 		// if present, the child kml:viewRefreshTime element has a positive value (> 0);
 		// if present, the child kml:viewBoundScale element has a positive value (> 0).
 
-		Assert.assertNotNull(Utils.findField(Link.class, "refreshInterval"));
-		Assert.assertNotNull(Utils.findField(Link.class, "viewRefreshTime"));
-		Assert.assertNotNull(Utils.findField(Link.class, "viewBoundScale"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "refreshInterval"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "viewRefreshTime"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "viewBoundScale"));
 
 	}
 
@@ -237,7 +237,7 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 		coord.add(new Coordinate(-122.365038, 37.827237, 0));
 		coord.add(new Coordinate(-122.365662, 37.826988, 0));
 
-		Assert.assertEquals(coord.get(0), coord.get(coord.size() - 1));
+		Assertions.assertEquals(coord.get(0), coord.get(coord.size() - 1));
 
 	}
 
@@ -246,9 +246,9 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc17PolygonBoundary() {
-		Assert.assertNull(Utils.findClass(Boundary.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Boundary.class, "Update"));
 
-		Assert.assertNotNull(Utils.findField(Polygon.class, "outerBoundaryIs"));
+		Assertions.assertNotNull(Utils.findField(Polygon.class, "outerBoundaryIs"));
 	}
 
 	/**
@@ -264,11 +264,11 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc19ViewVolumeMinimalContent() {
-		Assert.assertNotNull(Utils.findField(ViewVolume.class, "leftFov"));
-		Assert.assertNotNull(Utils.findField(ViewVolume.class, "rightFov"));
-		Assert.assertNotNull(Utils.findField(ViewVolume.class, "bottomFov"));
-		Assert.assertNotNull(Utils.findField(ViewVolume.class, "topFov"));
-		Assert.assertNotNull(Utils.findField(ViewVolume.class, "near"));
+		Assertions.assertNotNull(Utils.findField(ViewVolume.class, "leftFov"));
+		Assertions.assertNotNull(Utils.findField(ViewVolume.class, "rightFov"));
+		Assertions.assertNotNull(Utils.findField(ViewVolume.class, "bottomFov"));
+		Assertions.assertNotNull(Utils.findField(ViewVolume.class, "topFov"));
+		Assertions.assertNotNull(Utils.findField(ViewVolume.class, "near"));
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc20NetworkLinkControlMinRefreshPeriod() {
-		Assert.assertNotNull(Utils.findField(NetworkLinkControl.class, "minRefreshPeriod"));
+		Assertions.assertNotNull(Utils.findField(NetworkLinkControl.class, "minRefreshPeriod"));
 	}
 
 	/**
@@ -284,30 +284,30 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc21EmptyObject() {
-		Assert.assertNull(Utils.findClass(Playlist.class, "id"));
-		Assert.assertNull(Utils.findClass(LatLonQuad.class, "id"));
-		Assert.assertNull(Utils.findClass(TourPrimitive.class, "id"));
-		Assert.assertNull(Utils.findClass(Region.class, "id"));
-		Assert.assertNull(Utils.findClass(TimePrimitive.class, "id"));
-		Assert.assertNull(Utils.findClass(ItemIcon.class, "id"));
-		Assert.assertNull(Utils.findClass(Scale.class, "id"));
-		Assert.assertNull(Utils.findClass(Pair.class, "id"));
-		Assert.assertNull(Utils.findClass(ViewVolume.class, "id"));
-		Assert.assertNull(Utils.findClass(Alias.class, "id"));
-		Assert.assertNull(Utils.findClass(Location.class, "id"));
-		Assert.assertNull(Utils.findClass(Lod.class, "id"));
-		Assert.assertNull(Utils.findClass(ResourceMap.class, "id"));
-		Assert.assertNull(Utils.findClass(ImagePyramid.class, "id"));
-		Assert.assertNull(Utils.findClass(SchemaData.class, "id"));
-		Assert.assertNull(Utils.findClass(Orientation.class, "id"));
-		Assert.assertNull(Utils.findClass(Feature.class, "id"));
-		Assert.assertNull(Utils.findClass(StyleSelector.class, "id"));
-		Assert.assertNull(Utils.findClass(AbstractView.class, "id"));
-		Assert.assertNull(Utils.findClass(SubStyle.class, "id"));
-		Assert.assertNull(Utils.findClass(Data.class, "id"));
-		Assert.assertNull(Utils.findClass(Geometry.class, "id"));
-		Assert.assertNull(Utils.findClass(AbstractLatLonBox.class, "id"));
-		Assert.assertNull(Utils.findClass(BasicLink.class, "id"));
+		Assertions.assertNull(Utils.findClass(Playlist.class, "id"));
+		Assertions.assertNull(Utils.findClass(LatLonQuad.class, "id"));
+		Assertions.assertNull(Utils.findClass(TourPrimitive.class, "id"));
+		Assertions.assertNull(Utils.findClass(Region.class, "id"));
+		Assertions.assertNull(Utils.findClass(TimePrimitive.class, "id"));
+		Assertions.assertNull(Utils.findClass(ItemIcon.class, "id"));
+		Assertions.assertNull(Utils.findClass(Scale.class, "id"));
+		Assertions.assertNull(Utils.findClass(Pair.class, "id"));
+		Assertions.assertNull(Utils.findClass(ViewVolume.class, "id"));
+		Assertions.assertNull(Utils.findClass(Alias.class, "id"));
+		Assertions.assertNull(Utils.findClass(Location.class, "id"));
+		Assertions.assertNull(Utils.findClass(Lod.class, "id"));
+		Assertions.assertNull(Utils.findClass(ResourceMap.class, "id"));
+		Assertions.assertNull(Utils.findClass(ImagePyramid.class, "id"));
+		Assertions.assertNull(Utils.findClass(SchemaData.class, "id"));
+		Assertions.assertNull(Utils.findClass(Orientation.class, "id"));
+		Assertions.assertNull(Utils.findClass(Feature.class, "id"));
+		Assertions.assertNull(Utils.findClass(StyleSelector.class, "id"));
+		Assertions.assertNull(Utils.findClass(AbstractView.class, "id"));
+		Assertions.assertNull(Utils.findClass(SubStyle.class, "id"));
+		Assertions.assertNull(Utils.findClass(Data.class, "id"));
+		Assertions.assertNull(Utils.findClass(Geometry.class, "id"));
+		Assertions.assertNull(Utils.findClass(AbstractLatLonBox.class, "id"));
+		Assertions.assertNull(Utils.findClass(BasicLink.class, "id"));
 	}
 
 	/**
@@ -315,7 +315,7 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc22UpdateTargetHref() {
-		Assert.assertNull(Utils.findClass(Update.class, "targetHref"));
+		Assertions.assertNull(Utils.findClass(Update.class, "targetHref"));
 		
 	}
 
@@ -340,7 +340,7 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc25Schema() {
-		Assert.assertNull(Utils.findClass(Schema.class, "id"));
+		Assertions.assertNull(Utils.findClass(Schema.class, "id"));
 	}
 
 	/**
@@ -349,8 +349,8 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	@Test
 	public void atc26SchemaSimpleField() {
 		Field simpleField = Utils.findField(SimpleField.class, "name");
-		Assert.assertNotNull(simpleField);
-		Assert.assertEquals("String", simpleField.getType().getSimpleName());
+		Assertions.assertNotNull(simpleField);
+		Assertions.assertEquals("String", simpleField.getType().getSimpleName());
 
 	}
 
@@ -359,7 +359,7 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc27ExtendedDataSchemaData() {
-		Assert.assertNull(Utils.findClass(SimpleField.class, "name"));
+		Assertions.assertNull(Utils.findClass(SimpleField.class, "name"));
 	}
 
 	/**
@@ -402,11 +402,11 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 	// Verify that if a kml:Orientation element is not a descendant of kml:Update, 
 		// then it contains at least one of the following elements: kml:heading, kml:tilt, or kml:roll.
 		
-		Assert.assertNull(Utils.findClass(Orientation.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Orientation.class, "Update"));
 
-		Assert.assertNotNull(Utils.findField(Orientation.class, "heading"));
-		Assert.assertNotNull(Utils.findField(Orientation.class, "tilt"));
-		Assert.assertNotNull(Utils.findField(Orientation.class, "roll"));
+		Assertions.assertNotNull(Utils.findField(Orientation.class, "heading"));
+		Assertions.assertNotNull(Utils.findField(Orientation.class, "tilt"));
+		Assertions.assertNotNull(Utils.findField(Orientation.class, "roll"));
 	}
 
 	/**
@@ -422,15 +422,15 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc34Model() {
-		Assert.assertNull(Utils.findClass(Model.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Model.class, "Update"));
 		
 		Field linkModel = Utils.findField(Model.class, "link");
-		Assert.assertNotNull(linkModel);
-		Assert.assertEquals(Link.class, linkModel.getType());
+		Assertions.assertNotNull(linkModel);
+		Assertions.assertEquals(Link.class, linkModel.getType());
 
 		Field locationModel = Utils.findField(Model.class, "location");
-		Assert.assertNotNull(locationModel);
-		Assert.assertEquals(Location.class, locationModel.getType());
+		Assertions.assertNotNull(locationModel);
+		Assertions.assertEquals(Location.class, locationModel.getType());
 	}
 
 	/**
@@ -438,24 +438,24 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc35PhotoOverlayMinimalContent() {
-		Assert.assertNull(Utils.findClass(PhotoOverlay.class, "Update"));
+		Assertions.assertNull(Utils.findClass(PhotoOverlay.class, "Update"));
 		
 		Field icon = Utils.findField(PhotoOverlay.class, "icon");
-		Assert.assertNotNull(icon);
-		Assert.assertEquals(Icon.class, icon.getType());
+		Assertions.assertNotNull(icon);
+		Assertions.assertEquals(Icon.class, icon.getType());
 
 		Field viewVolume = Utils.findField(PhotoOverlay.class, "viewVolume");
-		Assert.assertNotNull(viewVolume);
-		Assert.assertEquals(ViewVolume.class, viewVolume.getType());
+		Assertions.assertNotNull(viewVolume);
+		Assertions.assertEquals(ViewVolume.class, viewVolume.getType());
 
 		Field point = Utils.findField(PhotoOverlay.class, "point");
-		Assert.assertNotNull(point);
-		Assert.assertEquals(Point.class, point.getType());
+		Assertions.assertNotNull(point);
+		Assertions.assertEquals(Point.class, point.getType());
 		
 		//abstractView con contain Camera
 		Field camera = Utils.findField(PhotoOverlay.class, "abstractView");
-		Assert.assertNotNull(camera);
-		Assert.assertEquals(AbstractView.class, camera.getType());
+		Assertions.assertNotNull(camera);
+		Assertions.assertEquals(AbstractView.class, camera.getType());
 	}
 
 	/**
@@ -463,11 +463,11 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc36Pair() {
-		Assert.assertNull(Utils.findClass(Pair.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Pair.class, "Update"));
 		
-		Assert.assertNotNull(Utils.findField(Pair.class, "key"));
-		Assert.assertNotNull(Utils.findField(Pair.class, "styleUrl"));
-		Assert.assertNotNull(Utils.findField(Pair.class, "styleSelector"));
+		Assertions.assertNotNull(Utils.findField(Pair.class, "key"));
+		Assertions.assertNotNull(Utils.findField(Pair.class, "styleUrl"));
+		Assertions.assertNotNull(Utils.findField(Pair.class, "styleSelector"));
 	}
 
 	/**
@@ -475,8 +475,8 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc37ItemIcon() {
-		Assert.assertNull(Utils.findClass(ItemIcon.class, "Update"));
-		Assert.assertNotNull(Utils.findField(ItemIcon.class, "href"));
+		Assertions.assertNull(Utils.findClass(ItemIcon.class, "Update"));
+		Assertions.assertNotNull(Utils.findField(ItemIcon.class, "href"));
 	}
 
 	/**
@@ -500,11 +500,11 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc40Link() {
-		Assert.assertNull(Utils.findClass(Link.class, "Update"));
-		Assert.assertNull(Utils.findClass(Icon.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Link.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Icon.class, "Update"));
 		
-		Assert.assertNotNull(Utils.findField(Link.class, "href"));
-		Assert.assertNotNull(Utils.findField(Icon.class, "href"));
+		Assertions.assertNotNull(Utils.findField(Link.class, "href"));
+		Assertions.assertNotNull(Utils.findField(Icon.class, "href"));
 	}
 
 	/**
@@ -512,10 +512,10 @@ public class AtsConformanceLevel1Test implements IAtsConformanceLevel1 {
 	 */
 	@Test
 	public void atc41Region() {
-		Assert.assertNull(Utils.findClass(Region.class, "Update"));
+		Assertions.assertNull(Utils.findClass(Region.class, "Update"));
 
-		Assert.assertNotNull(Utils.findField(Region.class, "latLonAltBox"));
-		Assert.assertNotNull(Utils.findField(Region.class, "lod"));
+		Assertions.assertNotNull(Utils.findField(Region.class, "latLonAltBox"));
+		Assertions.assertNotNull(Utils.findField(Region.class, "lod"));
 	}
 
 }

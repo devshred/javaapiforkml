@@ -19,8 +19,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 
@@ -28,7 +28,7 @@ import de.micromata.opengis.kml.v_2_2_0.Kml;
 
 public class KmzTest {
 	@Test
-	@Ignore
+	@Disabled
 	public void testKml12() throws IOException {
 		final Kml kmlmain = createKmlStructure("KmlFileMain.kml", "PlacemarkMain");
 

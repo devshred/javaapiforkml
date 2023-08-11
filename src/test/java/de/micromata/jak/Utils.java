@@ -31,7 +31,7 @@ import jakarta.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 

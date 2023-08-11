@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import de.micromata.jak.internal.IKMLReference;
 import de.micromata.opengis.kml.v_2_2_0.Alias;
